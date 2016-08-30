@@ -1,0 +1,11 @@
+{
+  "user" : "miguel.aldobv@gmail.com",
+  "password" : "04Noviembre",
+  "token" : "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcmVhdGVkQXQiOiIyMDE2LTA4LTI5VDIyOjI2OjQ2LjEwMVoiLCJ1c2VybmFtZSI6Imdyb3VwMVxcYWRtaW5pc3RyYXRvciIsInJlbW90ZUFkZHJlc3MiOiI6OmZmZmY6MTkyLjE2OC4wLjU1IiwicHJpdmlsZWdlIjpudWxsLCJpYXQiOjE0NzI1MDk2MDYsImV4cCI6MTQ3MjUzMTIwNn0.r70yBf7bTx8NOtNyViGMD2Jr5kgoMWaL7Qv1e1M0XUM",
+  "application" : "application/json",
+  "contentType" : "Content-Type",
+  "authorization" : "Authorization",
+  "autentication" : "ldap",
+  "uri" : "https://192.168.0.11:4040/",
+  "proxy" : "https://172.20.240.5:8080"
+}

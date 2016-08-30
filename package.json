@@ -1,0 +1,17 @@
+{
+  "name": "test_at01",
+  "version": "1.0.0",
+  "description": "\ttest for at01",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Aldo Balderrama",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
+    "superagent": "^2.2.0",
+    "superagent-proxy": "^1.0.1"
+  }
+}
