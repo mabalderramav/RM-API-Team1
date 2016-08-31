@@ -1,11 +1,11 @@
 {
-  "user" : "miguel.aldobv@gmail.com",
-  "password" : "04Noviembre",
-  "token" : "jwt eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcmVhdGVkQXQiOiIyMDE2LTA4LTMxVDEyOjQ0OjQyLjAwOFoiLCJ1c2VybmFtZSI6Imdyb3VwMVxcYWRtaW5pc3RyYXRvciIsInJlbW90ZUFkZHJlc3MiOiI6OmZmZmY6MTkyLjE2OC4wLjcwIiwicHJpdmlsZWdlIjpudWxsLCJpYXQiOjE0NzI2NDc0ODIsImV4cCI6MTQ3MjY2OTA4Mn0.yeMBLFAP7A_3GnzvY9_TMyyqESg4vK7vB6udO2b3NpY",
+  "user" : "administrator",
+  "password" : "P@ssw0rd",
+  "token" : "jwt ",
   "application" : "application/json",
   "contentType" : "Content-Type",
   "authorization" : "Authorization",
   "autentication" : "ldap",
-  "uri" : "https://192.168.0.11:4040/",
-  "proxy" : "https://172.20.240.5:8080"
+  "timeout" : 4000,
+  "uri" : "https://192.168.0.11:4040"
 }
