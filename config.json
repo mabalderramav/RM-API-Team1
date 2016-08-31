@@ -1,11 +1,12 @@
 {
   "user" : "administrator",
   "password" : "P@ssw0rd",
+  "domain" : "group1",
+  "authentication" : "ldap",
   "token" : "jwt ",
   "application" : "application/json",
   "contentType" : "Content-Type",
   "authorization" : "Authorization",
-  "autentication" : "ldap",
   "timeout" : 4000,
   "uri" : "https://192.168.0.11:4040"
 }
