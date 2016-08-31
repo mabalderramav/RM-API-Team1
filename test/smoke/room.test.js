@@ -4,21 +4,21 @@ var room = require('../../lib/room_libs/roomLib.js');
 describe('Rooms', function () {
 	this.timeout(8000);
 
-	it('GET /Rooms', function(done){
+	it('GET /rooms', function(done){
 		room.getRooms(function(err, res){
 			expect(res.status).to.equal(200);
 			done();
 		});
 	});
 
-	it('GET /Rooms/{roomId}', function(done){
+	it('GET /rooms/{roomId}', function(done){
 		room.getRoomById(function(err, res){      
 			expect(res.status).to.equal(200);
 			done();
 		});
 	});
 
-	it('PUT /Rooms/{roomId}',function (done){
+	it('PUT /rooms/{roomId}',function (done){
 		var json = {
 			enabled : true,
 			location : 'string',
