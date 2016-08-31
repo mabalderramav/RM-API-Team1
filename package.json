@@ -1,18 +1,17 @@
 {
-  "name": "test_at01",
+  "name": "AT01-JAJED",
   "version": "1.0.0",
-  "description": "\ttest for at01",
+  "description": "\ttest for AT01-JAJED",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
   },
-  "author": "Aldo Balderrama",
+  "author": "AT01-Team1-JAJED",
   "license": "ISC",
   "dependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
     "superagent": "^2.2.0",
-    "superagent-proxy": "^1.0.1",
     "xunit-file": "^1.0.0"
   }
 }
