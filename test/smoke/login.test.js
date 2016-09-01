@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
-var login = require('../../lib/login_libs/loginLib.js');
-var status = require('../../utilities/status.json');
+var status = require('../../resources/status.json');
 var config = require('../../config.json');
-var credentials = require('../../utilities/credentials.js');
+var credentials = require('../../lib/credential_lib/credentialLib.js');
+var login = require('../../lib/login_libs/loginLib.js');
 
 describe('Login', function () {
 	this.timeout(config.timeout);
