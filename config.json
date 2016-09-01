@@ -8,5 +8,7 @@
   "contentType" : "Content-Type",
   "authorization" : "Authorization",
   "timeout" : 4000,
-  "uri" : "https://192.168.0.11:4040"
+  "server" : "192.168.0.11",
+  "protocol" : "https",
+  "port" : 4040
 }
