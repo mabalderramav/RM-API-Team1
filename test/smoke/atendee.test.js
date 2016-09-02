@@ -1,10 +1,13 @@
 var expect = require('chai').expect;
-var atendee = require('../../lib/atendee_libs/atendeeLib.js');
+var attendee = require('../../lib/attendee_libs/attendeeLib.js');
+var config = require('../../config.json')
+var status = require('../../resources/status.json')
 
-describe('Atendee', function(){
-	it('GET /atendee', function(done){
-		atendee.getAtendee(function(err, res){			
-			expect(res.status).to.equals(200);
+describe('Attendee', function(){
+	this.timeout(config.timeout);	
+	it('GET /attendee', function(done){
+		attendee.getAttendee(function(err, res){			
+			expect(res.status).to.equals(status.OK);
 			done();
 		});
 	});
