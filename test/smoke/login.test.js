@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var status = require('../../resources/status.json');
 var config = require('../../config.json');
 var credentials = require('../../lib/credential_lib/credentialLib.js');
-var login = require('../../lib/login_libs/loginLib.js');
+var login = require('../../lib/login_lib/loginLib.js');
 
 describe('Login', function () {
 	this.timeout(config.timeout);
