@@ -1,6 +1,5 @@
 var expect = require('chai').expect;
 var room = require('../../lib/room_libs/roomLib.js');
-var services = require('../../lib/services_libs/servicesLib.js');
 var config = require('../../config.json');
 var status = require('../../resources/status.json');
 
