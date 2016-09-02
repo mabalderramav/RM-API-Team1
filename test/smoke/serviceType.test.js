@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var serviceType = require('../../lib/serviceType_libs/serviceTypeLib.js');
+var serviceType = require('../../lib/serviceType_lib/serviceTypeLib.js');
 var config = require('../../config.json');
 var status = require('../../resources/status.json');
 
