@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var attendee = require('../../lib/attendee_libs/attendeeLib.js');
+var attendee = require('../../lib/attendee_lib/attendeeLib.js');
 var config = require('../../config.json')
 var status = require('../../resources/status.json')
 
