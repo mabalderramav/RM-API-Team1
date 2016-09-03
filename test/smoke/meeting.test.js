@@ -9,9 +9,9 @@ describe('Meetings', function () {
     beforeEach(function (done) {
         json = {
             organizer: '"Room 001',
-            title: 'MeetingTest01',
-            start: '2016-09-03T21:41:00.000Z',
-            end: '2016-09-03T21:42:00.000Z',
+            title: 'MeetingTest02',
+            start: '2016-09-03T22:43:00.000Z',
+            end: '2016-09-03T22:44:00.000Z',
             location: 'room001 room001',
             roomEmail: 'room001@group1.local',
             resources: [
