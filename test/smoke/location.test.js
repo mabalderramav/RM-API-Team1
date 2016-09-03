@@ -24,19 +24,19 @@ describe('Location', function () {
             done();
         });
     });
-    it('GET All', function (done) {
+    it('GET /locations}', function (done) {
         location.get(function (err, res) {
             expect(res.status).to.equal(status.OK);
             done();
         });
     });
-    it('GET by ID}', function (done) {
+    it('GET /locations/{locationId}', function (done) {
         location.getById(json._id,function (err, res) {
             expect(res.status).to.equal(status.OK);
             done();
         });
     });
-    it('PUT', function (done) {
+    it('PUT /locations/{locationId}', function (done) {
         var jsonUpdate = {
             customName: 'HO66'
         };

@@ -9,9 +9,9 @@ describe('Meetings', function () {
     beforeEach(function (done) {
         json = {
             organizer: '"Room 001',
-            title: 'ab10',
-            start: '2016-09-02T21:31:00.000Z',
-            end: '2016-09-02T21:32:00.000Z',
+            title: 'ab103',
+            start: '2016-09-03T21:31:00.000Z',
+            end: '2016-09-03T21:32:00.000Z',
             location: 'room001 room001',
             roomEmail: 'room001@group1.local',
             resources: [
@@ -38,21 +38,21 @@ describe('Meetings', function () {
         });
     });
 
-    it('GET/meetings/{meetingsId}', function (done) {
+    it('GET /services/{serviceId}/rooms/{roomId}/meeting/{meetingId}', function (done) {
         meeting.getById(json._id, function (err, res) {
             expect(res.status).to.equal(status.OK);
             done();
         });
     });
 
-    it('GET All', function (done) {
+    it('GET /services/{serviceId}/rooms/{roomId}/meeting', function (done) {
         meeting.get(function (err, res) {
             expect(res.status).to.equal(status.OK);
             done();
         });
     });
 
-    it('PUT', function (done) {
+    it('PUT /services/{serviceId}/rooms/{roomId}/meeting/{meetingId}', function (done) {
         var jsonUpdate = {
             start: '2016-08-31T21:27:00.000Z',
             end: '2016-08-31T21:28:00.000Z',
