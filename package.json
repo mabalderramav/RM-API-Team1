@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^3.5.0",
+    "log4js": "^0.6.38",
     "mocha": "^3.0.2",
     "superagent": "^2.2.0",
     "xunit-file": "^1.0.0"
