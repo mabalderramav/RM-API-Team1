@@ -8,6 +8,7 @@ var logger = require('./logger.js').getLogger('logFile');
 /**
  * Saves the log.
  *
+ * @param {String} resource Contains the resource.
  * @param {String} endPoint Contains the EndPoint.
  * @param {String} method Contains the Request Method.
  * @param {String} err Contains the error.
