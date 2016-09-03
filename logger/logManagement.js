@@ -13,8 +13,8 @@ var logger = require('./logger.js').getLogger('logFile');
  * @param {String} err Contains the error.
  * @param {String} res Contains the response.
  */
-module.exports.log = function (endPoint, method, err, res) {
-  logger.debug(method + ' ' + endPoint);
+module.exports.log = function (resource ,endPoint, method, err, res) {
+  logger.debug('Resource : ', resource + ', Method : ' + method + ', EndPoint : ' + endPoint);
   if(err){
     logger.error(err.status);
     logger.error(err.response);
