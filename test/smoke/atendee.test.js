@@ -5,7 +5,7 @@ var status = require('../../resources/status.json')
 
 describe('Attendee', function(){
 	this.timeout(config.timeout);	
-	it('GET /attendee', function(done){
+	it('GET /services/{serviceId}/attendees', function(done){
 		attendee.getAttendee(function(err, res){			
 			expect(res.status).to.equals(status.OK);
 			done();
