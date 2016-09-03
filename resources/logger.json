@@ -3,8 +3,8 @@
     "appenders" : [
       {
         "type": "file",
-        "filename": "logs/login.log",
-        "category": "login"
+        "filename": "logs/logFile.log",
+        "category": "logFile"
       }
     ]
   }

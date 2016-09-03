@@ -4,7 +4,7 @@
  * @fileoverview LogManagement module, responsible the log management for saving the logs of the application.
  * @author  Aldo.Balderrama@fundacion-jala.org (Miguel Aldo Balderrama)
  */
-var logger = require('./logger.js').getLogger('login');
+var logger = require('./logger.js').getLogger('logFile');
 /**
  * Saves the log.
  *
