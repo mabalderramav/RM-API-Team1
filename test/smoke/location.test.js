@@ -8,9 +8,9 @@ describe('Location', function () {
     var json = {};
     beforeEach(function (done) {
         json = {
-            name       : 'ho6',
-            customName : 'HO6',
-            description: 'this is the hoy6'
+            name       : 'punataTest',
+            customName : 'PunataTest',
+            description: 'This is the PunataTest'
         };
         location.create(json, function (err, res) {
             json = res.body;
