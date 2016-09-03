@@ -17,7 +17,7 @@ module.exports.log = function (resource ,endPoint, method, err, res) {
   logger.debug('Resource : ', resource + ', Method : ' + method + ', EndPoint : ' + endPoint);
   if(err){
     logger.error(err.status);
-    logger.error(err.response);
+    logger.error(err.response.error);
   } else {
     logger.debug("status: " + res.status);
   };
