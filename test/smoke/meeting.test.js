@@ -1,17 +1,70 @@
 var expect = require('chai').expect;
 var meeting = require('../../lib/meeting_libs/meetingLib.js');
+var config = require('../../config.json');
+var status = require('../../resources/status.json');
 
 describe('Meetings', function () {
-    this.timeout(8000);
-    it('GET All', function (done) {
-        meeting.get(function (err, res) {
-            expect(res.status).to.equal(200);
+    this.timeout(config.timeout);
+    var json = {};
+    beforeEach(function (done) {
+        json = {
+            organizer: '"Room 001',
+            title: 'ab10',
+            start: '2016-09-02T21:31:00.000Z',
+            end: '2016-09-02T21:32:00.000Z',
+            location: 'room001 room001',
+            roomEmail: 'room001@group1.local',
+            resources: [
+                "room001@group1.local"
+            ],
+            attendees: [
+                "eviraka@group1.local"
+            ],
+            optionalAttendees: [
+                "jrodriguez@group1.local"
+            ]
+        };
+        meeting.create(json, function (err, res) {
+            json = res.body;
+            expect(res.status).to.equal(status.OK);
             done();
         });
     });
-    it('GET By Id', function (done) {
-        meeting.getById(function (err, res) {
-            expect(res.status).to.equal(200);
+
+    afterEach(function (done) {
+        meeting.delete(json._id, function (err, res) {
+            expect(res.status).to.equal(status.OK);
+            done();
+        });
+    });
+
+    it('GET/meetings/{meetingsId}', function (done) {
+        meeting.getById(json._id, function (err, res) {
+            expect(res.status).to.equal(status.OK);
+            done();
+        });
+    });
+
+    it('GET All', function (done) {
+        meeting.get(function (err, res) {
+            expect(res.status).to.equal(status.OK);
+            done();
+        });
+    });
+
+    it('PUT', function (done) {
+        var jsonUpdate = {
+            start: '2016-08-31T21:27:00.000Z',
+            end: '2016-08-31T21:28:00.000Z',
+            title: 'new title',
+            optionalAttendees: [],
+            attendees: [
+                "mabalderramav@group1.local",
+                "eviraca@group1.local"
+            ]
+        };
+        meeting.update(json._id, jsonUpdate, function (err, res) {
+            expect(res.status).to.equal(status.OK);
             done();
         });
     });

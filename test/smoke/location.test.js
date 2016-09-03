@@ -1,28 +1,49 @@
 var expect = require('chai').expect;
 var location = require('../../lib/location_libs/locationLib.js');
+var config = require('../../config.json');
+var status = require('../../resources/status.json');
 
 describe('Location', function () {
-    this.timeout(8000);
+    this.timeout(config.timeout);
     var json = {};
-    it('GET All', function (done) {
-        location.get(function (err, res) {
-            expect(res.status).to.equal(200);
+    beforeEach(function (done) {
+        json = {
+            name       : 'ho6',
+            customName : 'HO6',
+            description: 'this is the hoy6'
+        };
+        location.create(json, function (err, res) {
+            json = res.body;
+            expect(res.status).to.equal(status.OK);
             done();
         });
     });
-    it('GET By Id', function (done) {
-        location.getById(function (err, res) {
-            expect(res.status).to.equal(200);
+    afterEach(function(done){
+        location.delete(json._id,function(err, res){
+            expect(res.status).to.equal(status.OK);
+            done();
+        });
+    });
+    it('GET All', function (done) {
+        location.get(function (err, res) {
+            expect(res.status).to.equal(status.OK);
+            done();
+        });
+    });
+    it('GET by ID}', function (done) {
+        location.getById(json._id,function (err, res) {
+            expect(res.status).to.equal(status.OK);
             done();
         });
     });
     it('PUT', function (done) {
-        var json = {
-            customName: 'Laboratory003'
+        var jsonUpdate = {
+            customName: 'HO66'
         };
-        location.update(json, function (err, res) {
-            expect(res.status).to.equal(200);
+        location.update(json._id,jsonUpdate, function (err, res) {
+            expect(res.status).to.equal(status.OK);
             done();
         });
     });
+
 });
