@@ -9,9 +9,9 @@ describe('Meetings', function () {
     beforeEach(function (done) {
         json = {
             organizer: '"Room 001',
-            title: 'MeetingTest02',
-            start: '2016-09-03T22:43:00.000Z',
-            end: '2016-09-03T22:44:00.000Z',
+            title: 'MeetingTest05',
+            start: '2016-09-05T22:47:00.000Z',
+            end: '2016-09-05T22:48:00.000Z',
             location: 'room001 room001',
             roomEmail: 'room001@group1.local',
             resources: [
@@ -54,8 +54,8 @@ describe('Meetings', function () {
 
     it('PUT /services/{serviceId}/rooms/{roomId}/meeting/{meetingId}', function (done) {
         var jsonUpdate = {
-            start: '2016-08-31T21:27:00.000Z',
-            end: '2016-08-31T21:28:00.000Z',
+            start: '2016-09-28T22:47:00.000Z',
+            end: '2016-09-28T22:48:00.000Z',
             title: 'new title',
             optionalAttendees: [],
             attendees: [
