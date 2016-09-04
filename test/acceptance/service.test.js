@@ -7,6 +7,7 @@ describe ('Service Acceptance Test', function (){
 	this.timeout(config.timeout);
 	var idService = {};
 	var firstService = {};
+	var quant = 1;
 	var index = 0;
 
 	it('GET /services' , function(done){
@@ -14,7 +15,7 @@ describe ('Service Acceptance Test', function (){
 			idService = res.body;
 			firstService = idService[index];
 			expect(res.status).to.equal(status.OK);
-			expect(res.body.length).to.be.at.least(1);
+			expect(res.body.length).to.be.at.least(quant);
             done();
 		});
 	});
