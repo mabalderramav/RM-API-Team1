@@ -4,7 +4,7 @@ var config = require('../../config.json');
 var credentials = require('../../lib/credential_lib/credentialLib.js');
 var login = require('../../lib/login_lib/loginLib.js');
 
-describe('Login', function () {
+describe('Login smoke test', function () {
 	this.timeout(config.timeout);
 	it('POST /login', function (done) {
 		var credentialsJson = credentials.getCredentialsJson();
