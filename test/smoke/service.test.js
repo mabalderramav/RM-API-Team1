@@ -3,7 +3,7 @@ var service = require('../../lib/service_lib/serviceLib.js');
 var config = require('../../config.json');
 var status = require('../../resources/status.json');
 
-describe('Services Smoke', function () {
+describe('Service Smoke Test', function () {
 	this.timeout(config.timeout);
 	var idService = {};
 	var index = 0;
