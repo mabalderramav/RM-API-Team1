@@ -18,7 +18,7 @@ describe('Rooms Bdt Test',function(){
 		var roomJson = {};
 		var minimumRoom = 1;
 
-		it('Given I have existent Rooms.',function(){			
+		it('Given I have existent Rooms.', function(done){			
 			room.getRooms(function(err, res){
 				roomJson = res.body;				
 				expect(roomJson.length).to.be.at.least(minimumRoom);			
@@ -26,7 +26,7 @@ describe('Rooms Bdt Test',function(){
 			});
 		});
 
-		it('When I perform a GET request',function(){
+		it('When I perform a GET request', function(done){
 			room.getRooms(function(err, res){		
 				expect(roomJson.length).to.be.at.least(minimumRoom);
 				expect(res.status).to.equal(status.OK);
@@ -34,12 +34,11 @@ describe('Rooms Bdt Test',function(){
 			});
 		});
 
-		it('I expect status code 200 OK',function(){
-			room.getRooms(function(err, res){						
+		it('I expect status code 200 OK', function(done){
+			room.getRooms(function(err, res){										
 				expect(res.status).to.equal(status.OK);
 				done();
 			});
 		});
 	});
 });
-
