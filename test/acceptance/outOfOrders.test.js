@@ -4,14 +4,13 @@ var config = require('../../config.json');
 var status = require('../../resources/status.json');
 var room = require('../../resources/room.json');
 
-var index = 0;
-
 describe('Out-of-orders Acceptance Test', function () {
 	this.timeout(config.timeout);
 	var OutOfOrderPost = {};
 	var OutOfOrders = {};
 	var OutOfOrder = {};
 	var withPath = 0;
+	var quant = 1;
 	var index = 0;
 
 	beforeEach(function(done){
@@ -39,7 +38,7 @@ describe('Out-of-orders Acceptance Test', function () {
 		outOfOrder.get(withPath, function(err,res){
 			OutOfOrders = res.body;
      	    expect(res.status).to.equal(status.OK);
-     	    expect(res.body.length).to.be.at.least(1);
+     	    expect(res.body.length).to.be.at.least(quant);
      	    expect(res.body.length).to.equal(OutOfOrders.length);
             done();
 		});

@@ -4,9 +4,7 @@ var config = require('../../config.json');
 var status = require('../../resources/status.json');
 var room = require('../../resources/room.json');
 
-var index = 0;
-
-describe('Out-of-orders', function () {
+describe('Out-of-orders Smoke Test', function () {
 	this.timeout(config.timeout);
 	var OutOfOrderPost = {};
 	var OutOfOrder = {};
