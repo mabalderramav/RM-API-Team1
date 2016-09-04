@@ -7,7 +7,7 @@
   "application" : "application/json",
   "contentType" : "Content-Type",
   "authorization" : "Authorization",
-  "timeout" : 16000,
+  "timeout" : 4000,
   "server" : "192.168.0.11",
   "protocol" : "https",
   "port" : 4040
