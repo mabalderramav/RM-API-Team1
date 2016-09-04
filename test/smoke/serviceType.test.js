@@ -3,7 +3,7 @@ var serviceType = require('../../lib/serviceType_lib/serviceTypeLib.js');
 var config = require('../../config.json');
 var status = require('../../resources/status.json');
 
-describe('Service Types', function(){
+describe('Service Types Smoke Test', function(){
 	this.timeout(config.timeout);
 
 	it('GET /service-types', function(done){
