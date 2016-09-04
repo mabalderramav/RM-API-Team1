@@ -3,7 +3,7 @@ var room = require('../../lib/room_lib/roomLib.js');
 var config = require('../../config.json');
 var status = require('../../resources/status.json');
 
-describe('Rooms', function () {
+describe('Rooms Smoke Test', function () {
 	this.timeout(config.timeout);
 	
 	before(function(done){
