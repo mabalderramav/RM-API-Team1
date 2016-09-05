@@ -7,8 +7,8 @@ describe ('Service Acceptance Test', function (){
 	this.timeout(config.timeout);
 	var idService = {};
 	var firstService = {};
-	var quant = 1;
 	var index = 0;
+	var quant = 1;
 
 	it('GET /services' , function(done){
 		service.get(function(err,res){

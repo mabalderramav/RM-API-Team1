@@ -3,7 +3,7 @@ var location = require('../../lib/location_libs/locationLib.js');
 var config = require('../../config.json');
 var status = require('../../resources/status.json');
 
-describe('Location', function () {
+describe('Location Smoke Test', function () {
     this.timeout(config.timeout);
     var json = {};
     beforeEach(function (done) {

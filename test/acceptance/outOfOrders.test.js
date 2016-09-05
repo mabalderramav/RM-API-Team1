@@ -67,7 +67,7 @@ describe('Out-of-orders Acceptance Test', function () {
             done();
 		});
 	});
-
+	
 	it('GET /services/{serviceId}/rooms/{roomId}/out-of-orders/{outOfOrderId}' , function(done){
 		withPath = 1;
 		outOfOrder.getById(withPath, OutOfOrder._id, function(err,res){
