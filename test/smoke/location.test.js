@@ -1,7 +1,12 @@
 var expect = require('chai').expect;
-var location = require('../../lib/location_libs/locationLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var location = endPointManager.getLocation();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
 
 describe('Location Smoke Test', function () {
     this.timeout(config.timeout);

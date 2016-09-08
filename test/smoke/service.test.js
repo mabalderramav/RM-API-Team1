@@ -1,7 +1,12 @@
 var expect = require('chai').expect;
-var service = require('../../lib/service_lib/serviceLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var service = endPointManager.getService();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
 
 describe('Service Smoke Test', function () {
 	this.timeout(config.timeout);
