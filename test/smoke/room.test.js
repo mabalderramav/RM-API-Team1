@@ -1,15 +1,20 @@
 var expect = require('chai').expect;
-var room = require('../../lib/room_lib/roomLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var room = endPointManager.getRoom();
+var config = requireManager.getRequireConfig();;
+var status = resourceManager.getStatus();
 
 describe('Rooms Smoke Test', function () {
 	this.timeout(config.timeout);
-	
+
 	before(function(done){
 		room.getRooms(function(err, res){
-			idRoom = res.body;						
-			expect(res.status).to.equal(status.OK);			
+			idRoom = res.body;
+			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
@@ -21,8 +26,8 @@ describe('Rooms Smoke Test', function () {
 		});
 	});
 
-	it('GET /rooms/{roomId}', function(done){		
-		room.getRoomById(function(err, res){			
+	it('GET /rooms/{roomId}', function(done){
+		room.getRoomById(function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
@@ -35,21 +40,21 @@ describe('Rooms Smoke Test', function () {
 			customDisplayName : 'update Room 002 ID TEST',
 			code : 'string'
 		};
-		room.update(roomJson, function (err, res){      			
+		room.update(roomJson, function (err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
 
 	it('GET /services/{serviceId}/rooms', function(done){
-		room.getRoomByServices(function(err, res){            
+		room.getRoomByServices(function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
 
 	it('GET /services/{serviceId}/rooms/{roomId}', function(done){
-		room.getRoomByIdAndServices(function(err, res){      
+		room.getRoomByIdAndServices(function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
@@ -62,7 +67,7 @@ describe('Rooms Smoke Test', function () {
 			customDisplayName : 'update Room 002 index test',
 			code : 'string'
 		};
-		room.updateRoomByIdAndServices(roomJson, function(err, res){      
+		room.updateRoomByIdAndServices(roomJson, function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});

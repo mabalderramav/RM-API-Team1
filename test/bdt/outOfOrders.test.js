@@ -1,8 +1,13 @@
 var expect = require('chai').expect;
-var outOfOrder = require('../../lib/outOfOrder_lib/outOfOrdersLib.js');
-var room = require('../../resources/room.json');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var outOfOrder = endPointManager.getOutOfOrder();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
+var room = resourceManager.getRoom();
 
 /*
 Feature: Out-Of-Order
@@ -20,7 +25,7 @@ describe('Out-of-orders Bdt Test', function () {
 	var Room = {};
 	var OutOfOrder = {};
 	var withPath = 0;
-	
+
 		it('Given I get an existent \'Room\'',function(done){
 			Room =  room[index];
 			done();
@@ -69,7 +74,7 @@ Scenario 2: Verify an out-of-order deleted not exist more.
 	var index = 0;
 	var Room =  room[index];
 	var OutOfOrder = {};
-	
+
 		it('Given I create an \'out-of-order\'',function(done){
 			var outOfOrderJson = {
 				roomId : Room.id,

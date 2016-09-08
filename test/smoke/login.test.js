@@ -1,8 +1,13 @@
 var expect = require('chai').expect;
-var status = require('../../resources/status.json');
-var config = require('../../config.json');
-var credentials = require('../../lib/credential_lib/credentialLib.js');
-var login = require('../../lib/login_lib/loginLib.js');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var status = resourceManager.getStatus();
+var config = requireManager.getRequireConfig();
+var credentials = requireManager.getRequireLib('credentialLib', 'credential_lib');
+var login = endPointManager.getLogin();
 
 describe('Login smoke test', function () {
 	this.timeout(config.timeout);
