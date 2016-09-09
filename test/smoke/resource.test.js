@@ -69,3 +69,60 @@ describe ('Resources Smoke Test', function (){
 	})
 
 });
+
+describe ('Resources Smoke Test', function(){
+	this.timeout(config.timeout);
+	var resourceJson={};
+	var name= resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
+
+	it('POST / resources',function(done){
+		resourceJson = {
+			name: name,
+			customName:resources.resourcusname,
+			fontIcon: resources.resourfonticon,
+  			from: resources.resourfrom,
+			description: resources.resourdesc
+		};
+		resource.create (resourceJson, function(err,res){
+			expect(res.status).to.equal(status.OK);
+			resourceJson = res.body;
+			done();
+		});
+	});
+
+	after(function(done){
+		resource.delete(resourceJson._id, function(err,res){
+			expect(res.status).to.equal(status.OK);
+			done();
+		});
+	});
+});
+
+describe ('Resources Smoke Test', function(){
+	this.timeout(config.timeout);
+	var resourceJson={};
+	var name= resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
+
+
+	before(function(done){
+		resourceJson = {
+			name: name,
+			customName:resources.resourcusname,
+			fontIcon: resources.resourfonticon,
+  			from: resources.resourfrom,
+			description: resources.resourdesc
+		};
+		resource.create (resourceJson, function(err,res){
+			expect(res.status).to.equal(status.OK);
+			resourceJson = res.body;
+			done();
+		});
+	});
+
+	it('DELETE /resources/{resourceId}',function(done){
+		resource.delete(resourceJson._id, function(err,res){
+			expect(res.status).to.equal(status.OK);
+			done();
+		});
+	});
+});
