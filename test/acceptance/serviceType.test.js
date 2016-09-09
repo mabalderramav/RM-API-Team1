@@ -24,7 +24,7 @@ describe('Service Types Acceptance Test', function(){
 				serviceTypeJson = arrayServiceType[firstElement];				
 				expect(res.body[firstElement].version).to.equal(serviceTypeJson.version);	
 				expect(res.body[firstElement].name).to.equal(serviceTypeJson.name);
-				expect(res.body[firstElement].version).to.equal(serviceTypeJson.version);
+				expect(res.body[firstElement].support).to.deep.equal(serviceTypeJson.support);				
 			}			
 			else{
 				serviceTypeJson = arrayServiceType;

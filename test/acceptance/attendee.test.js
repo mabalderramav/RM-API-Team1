@@ -19,8 +19,7 @@ describe('Attendee Acceptance Test', function(){
 	});	
 
 	it('GET /services/{serviceId}/attendees', function(done){
-		attendee.getAttendee(function(err, res){			
-			
+		attendee.getAttendee(function(err, res){
 			if(expect(arrayAttendee.length).to.be.at.least(minimumAttendee)){
 				attendeeJson = arrayAttendee[firstElement];				
 				expect(res.body[firstElement]._id).to.equal(attendeeJson._id);				
@@ -33,6 +32,7 @@ describe('Attendee Acceptance Test', function(){
 				expect(res.body[firstElement].userPrincipalName).to.equal(attendeeJson.userPrincipalName);
 				expect(res.body[firstElement].mail).to.equal(attendeeJson.mail);
 				expect(res.body[firstElement].serviceId).to.equal(attendeeJson.serviceId);
+				expect(res.body[firstElement].__v).to.equal(attendeeJson.__v);
 			}
 			else{				
 				attendeeJson = arrayAttendee;				
