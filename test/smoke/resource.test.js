@@ -13,9 +13,10 @@ var status = resourceManager.getStatus();
 
 describe ('Resources Smoke Test', function (){
 	this.timeout(config.timeout);
-	var resourceJson={};
-	var resourceJsonUpdate={};
-	var name= resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
+	var resourceJson = {};
+	var resourceJsonUpdate = {};
+	var resJson={};
+	var name = resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
 	var nameup;
 
 	before(function(done){
@@ -23,18 +24,18 @@ describe ('Resources Smoke Test', function (){
 			name: name,
 			customName:resources.resourcusname,
 			fontIcon: resources.resourfonticon,
-  		from: resources.resourfrom,
+  			from: resources.resourfrom,
 			description: resources.resourdesc
 		};
 		resource.create (resourceJson, function(err,res){
 			expect(res.status).to.equal(status.OK);
-			resourceJson = res.body;
+			resJson = res.body;
 			done();
 		});
 	});
 
 	after(function(done){
-		resource.delete(resourceJson._id, function(err,res){
+		resource.delete(resJson._id, function(err,res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
@@ -48,79 +49,48 @@ describe ('Resources Smoke Test', function (){
 	});
 
 	it('GET /resources/{resourceId}', function(done){
-		resource.getById(resourceJson._id, function(err,res){
+		resource.getById(resJson._id, function(err,res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
 
 	it('PUT /resources/{resourceId}', function(done){
-		resourceJsonUpdate= {
-			name : resourceJson.name + '-Update',
-			customName: resourceJson.customName + '-Update',
-			fontIcon: resourceJson.fontIcon + '-Update',
-  		from: resourceJson.from + '-Update',
-			description: resourceJson.description + '-Update'
+		resourceJsonUpdate = {
+			name : resJson.name + '-Update',
+			customName: resJson.customName + '-Update',
+			fontIcon: resJson.fontIcon + '-Update',
+  			from: resJson.from + '-Update',
+			description: resJson.description + '-Update'
 		};
-		resource.update(resourceJson._id, resourceJsonUpdate, function(err,res){
+		resource.update(resJson._id, resourceJsonUpdate, function(err,res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	})
 
-});
 
-describe ('Resources Smoke Test', function(){
-	this.timeout(config.timeout);
-	var resourceJson={};
-	var name= resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
+	var resourceName= resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
 
-	it('POST / resources',function(done){
+	it('POST /resources',function(done){
 		resourceJson = {
-			name: name,
-			customName:resources.resourcusname,
+			name : resourceName,
+			customName : resources.resourcusname,
 			fontIcon: resources.resourfonticon,
   			from: resources.resourfrom,
 			description: resources.resourdesc
 		};
+
 		resource.create (resourceJson, function(err,res){
 			expect(res.status).to.equal(status.OK);
-			resourceJson = res.body;
+			resourceId=res.body._id;
 			done();
 		});
 	});
 
-	after(function(done){
-		resource.delete(resourceJson._id, function(err,res){
-			expect(res.status).to.equal(status.OK);
-			done();
-		});
-	});
-});
-
-describe ('Resources Smoke Test', function(){
-	this.timeout(config.timeout);
-	var resourceJson={};
-	var name= resources.resourname + randomstring.generate({ length: 6, charset: 'alphabetic'});
-
-
-	before(function(done){
-		resourceJson = {
-			name: name,
-			customName:resources.resourcusname,
-			fontIcon: resources.resourfonticon,
-  			from: resources.resourfrom,
-			description: resources.resourdesc
-		};
-		resource.create (resourceJson, function(err,res){
-			expect(res.status).to.equal(status.OK);
-			resourceJson = res.body;
-			done();
-		});
-	});
 
 	it('DELETE /resources/{resourceId}',function(done){
-		resource.delete(resourceJson._id, function(err,res){
+		resource.delete(resourceId, function(err, res) {
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
