@@ -1,9 +1,15 @@
 var expect = require('chai').expect;
-var location = require('../../lib/location_libs/locationLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
 var randomstring = require("randomstring");
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var location = endPointManager.getLocation();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
 var length = 5;
+
 describe('Location Smoke Test', function () {
     this.timeout(config.timeout);
     var jsonCreateLocation = {};
@@ -24,6 +30,7 @@ describe('Location Smoke Test', function () {
             done();
         });
     });
+
     afterEach(function (done) {
         location.delete(jsonCreateLocation._id, function (err, res) {
             expect(res.status).to.equal(status.OK);
@@ -33,6 +40,7 @@ describe('Location Smoke Test', function () {
             });
         });
     });
+
     it('POST /locations', function (done) {
         jsonPostLocation = {
             name: 'Name' + name,
@@ -45,18 +53,21 @@ describe('Location Smoke Test', function () {
             done();
         });
     });
+
     it('GET /{locations}', function (done) {
         location.get(function (err, res) {
             expect(res.status).to.equal(status.OK);
             done();
         });
     });
+
     it('GET /locations/{locationId}', function (done) {
         location.getById(jsonCreateLocation._id, function (err, res) {
             expect(res.status).to.equal(status.OK);
             done();
         });
     });
+
     it('PUT /locations/{locationId}', function (done) {
         var jsonPutLocation = {
             customName: customName
@@ -67,6 +78,7 @@ describe('Location Smoke Test', function () {
             done();
         });
     });
+
     it('DELETE /locations/{locationId}', function (done) {
         location.delete(jsonPostLocation._id, function (err, res) {
             expect(res.status).to.equal(status.OK);

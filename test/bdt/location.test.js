@@ -1,22 +1,27 @@
 var expect = require('chai').expect;
-var location = require('../../lib/location_libs/locationLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
-var room = require('../../lib/room_lib/roomLib.js');
 var randomstring = require("randomstring");
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var location = endPointManager.getLocation();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
+var room = endPointManager.getRoom();
 var length = 5;
 /*
  Feature: Location
 
  Scenario 1: Verify that a location is associate with a room.
  Given I have a room
-    And I have a location 'locationTest'
+ And I have a location 'locationTest'
  When I associate the location with the room
  Then ensure 'locationTest' is associate with the 'roomTest'
  */
 
 describe('Location Bdt Test:', function () {
-
+    this.timeout(config.timeout);
     context('Scenario 1: Verify that a location is associate with a room', function () {
         var roomObtenido = {};
         var jsonCreateLocation = {};
@@ -34,13 +39,15 @@ describe('Location Bdt Test:', function () {
                 });
             });
         });
-        it('Given I have a room', function (done){
-            room.getRoomById(function(err, res){
+
+        it('Given I have a room', function (done) {
+            room.getRoomById(function (err, res) {
                 roomObtenido = res.body;
                 expect(res.status).to.equal(status.OK);
                 done();
             });
         });
+
         it('And I have a location locationTest', function (done) {
             jsonCreateLocation = {
                 name: name,
@@ -53,27 +60,28 @@ describe('Location Bdt Test:', function () {
                 done();
             });
         });
+
         it('When I associate the location in the room', function (done) {
             jsonPutRoom = {
-                enabled : true,
-                locationId : jsonCreateLocation._id,
-                code : description
+                enabled: true,
+                locationId: jsonCreateLocation._id,
+                code: description
             };
-            room.update(jsonPutRoom, function (err, res){
-                jsonPutRoom =  res.body;
+            room.update(jsonPutRoom, function (err, res) {
+                jsonPutRoom = res.body;
                 expect(res.status).to.equal(status.OK);
                 done();
             });
         });
+
         it('Then ensure locationTest is assign in the roomTest', function (done) {
-            room.getRoomById(function(err, res){
+            room.getRoomById(function (err, res) {
                 expect(res.status).to.equal(status.OK);
                 expect(jsonCreateLocation._id).to.equal(jsonPutRoom.locationId);
                 done();
             });
         });
 
-
-
     });
+
 });

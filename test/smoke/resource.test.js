@@ -1,9 +1,14 @@
-var config = require('../../config.json');
 var expect = require('chai').expect;
-var resource = require('../../lib/resources_libs/resourceLib.js');
-var resources = require('../../resources/resources.json');
-var status = require('../../resources/status.json');
 var randomstring = require("randomstring");
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var config = requireManager.getRequireConfig();
+var resource = endPointManager.getResource();
+var resources = resourceManager.getResources();
+var status = resourceManager.getStatus();
 
 
 describe ('Resources Smoke Test', function (){

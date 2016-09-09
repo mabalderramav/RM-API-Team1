@@ -1,14 +1,19 @@
-var config = require('../../config.json');
 var expect = require('chai').expect;
-var service = require('../../lib/service_lib/serviceLib.js');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var service = endPointManager.getService();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
 
 describe ('Service Acceptance Test', function (){
 	this.timeout(config.timeout);
 	var idService = {};
 	var firstService = {};
-	var quant = 1;
 	var index = 0;
+	var quant = 1;
 
 	it('GET /services' , function(done){
 		service.get(function(err,res){

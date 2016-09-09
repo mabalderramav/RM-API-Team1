@@ -1,8 +1,13 @@
 var expect = require('chai').expect;
-var outOfOrder = require('../../lib/outOfOrder_lib/outOfOrdersLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
-var room = require('../../resources/room.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var outOfOrder = endPointManager.getOutOfOrder();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
+var room = resourceManager.getRoom();
 
 describe('Out-of-orders Acceptance Test', function () {
 	this.timeout(config.timeout);
@@ -56,8 +61,8 @@ describe('Out-of-orders Acceptance Test', function () {
      	    expect(res.body._v).to.equal(OutOfOrder._v);
      	    expect(res.body.sendEmail).to.equal(OutOfOrder.sendEmail);
      	    expect(res.body.Url).to.equal(OutOfOrder.Url);
-            done();
-		});
+          done();
+			});
 	});
 
 	it('GET /services/{serviceId}/rooms/{roomId}/out-of-orders' , function(done){
