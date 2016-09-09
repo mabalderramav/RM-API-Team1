@@ -1,18 +1,23 @@
 var expect = require('chai').expect;
-var service = require('../../lib/service_lib/serviceLib.js');
-var room = require('../../lib/room_lib/roomLib.js');
-var constant = require('../../resources/constantVariables.json');
-var outOfOrderValues = require('../../resources/outOfOrdersValues.json');
-var meeting = require('../../lib/meeting_libs/meetingLib.js');
-var constant = require('../../resources/constantVariables.json');
-var outOfOrder = require('../../lib/outOfOrder_lib/outOfOrdersLib.js');
-var location = require('../../lib/location_libs/locationLib.js');
-var resource = require('../../lib/resources_libs/resourceLib.js');
-var resources = require('../../resources/resources.json');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
 var randomstring = require("randomstring");
 var moment = require("moment");
+var randomstring = require("randomstring");
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var config = requireManager.getRequireConfig();
+var service = endPointManager.getService();
+var room = endPointManager.getRoom();
+var constant = resourceManager.getConstantVariables();
+var outOfOrderValues = resourceManager.getOutOfOrdersValues();
+var meeting = endPointManager.getMeeting();
+var outOfOrder = endPointManager.getOutOfOrder();
+var location = endPointManager.getLocation();
+var resource = endPointManager.getResource();
+var resources = resourceManager.getResources();
+var status = resourceManager.getStatus();
 
 /*
 Feature: Workflow Test
@@ -37,7 +42,7 @@ describe('Workflow Test', function () {
 	var locationJson = {};
 	var outOfOrdersJson = {};
 	var Service = {};
-	
+
 	it('Given I get a \'Service\'',function(done){
 		service.getOneServiceExistent(function(oneService){
 			Service = oneService;
@@ -91,7 +96,7 @@ describe('Workflow Test', function () {
 					done();
 				});
 			});
-				
+
 	it('Then I assigned the \'location\' and \'resource\' to the room',function(done){
 		room.getRooms(function(err,res){
 			var json = {locationId : locationJson._id, resources : [resourceJson]};
@@ -115,5 +120,5 @@ describe('Workflow Test', function () {
             });
 	    });
 	});
-		
+
 });

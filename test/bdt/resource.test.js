@@ -1,7 +1,12 @@
 var expect = require('chai').expect;
-var config = require('../../config.json');
-var resource = require('../../lib/resources_libs/resourceLib.js');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var config = requireManager.getRequireConfig();
+var resource = endPointManager.getResource();
+var status = resourceManager.getStatus();
 
 /*
  Feature: Resource

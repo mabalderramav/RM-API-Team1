@@ -1,12 +1,17 @@
 var expect = require('chai').expect;
-var outOfOrder = require('../../lib/outOfOrder_lib/outOfOrdersLib.js');
-var constant = require('../../resources/constantVariables.json');
-var outOfOrderValues = require('../../resources/outOfOrdersValues.json');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
-var room = require('../../lib/room_lib/roomLib.js');
 var randomstring = require("randomstring");
 var moment = require("moment");
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var outOfOrder = endPointManager.getOutOfOrder();
+var outOfOrderValues = resourceManager.getOutOfOrdersValues();
+var constant = resourceManager.getConstantVariables();
+var config = requireManager.getRequireConfig();
+var status = resourceManager.getStatus();
+var room = endPointManager.getRoom();
 
 describe('Out-of-orders Acceptance Test', function () {
 	this.timeout(config.timeout);
@@ -49,7 +54,7 @@ describe('Out-of-orders Acceptance Test', function () {
 	});
 
 	it('GET /out-of-orders/{outOfOrderId}' , function(done){
-			outOfOrder.getById(constant.FULPATH, OutOfOrder._id, function(err, res){
+		outOfOrder.getById(constant.FULPATH, OutOfOrder._id, function(err, res){
      	    expect(res.status).to.equal(status.OK);
      	    expect(res.body._id).to.equal(OutOfOrder._id);
      	    expect(res.body.roomId).to.equal(OutOfOrder.roomId);
@@ -59,7 +64,7 @@ describe('Out-of-orders Acceptance Test', function () {
      	    expect(res.body._v).to.equal(OutOfOrder._v);
      	    expect(res.body.sendEmail).to.equal(OutOfOrder.sendEmail);
      	    expect(res.body.Url).to.equal(OutOfOrder.Url);
-            done();
+         	done();
 		});
 	});
 
@@ -70,7 +75,7 @@ describe('Out-of-orders Acceptance Test', function () {
             done();
 		});
 	});
-	
+
 	it('GET /services/{serviceId}/rooms/{roomId}/out-of-orders/{outOfOrderId}' , function(done){
 		outOfOrder.getById(constant.FULPATH, OutOfOrder._id, function(err,res){
      	    expect(res.status).to.equal(status.OK);
