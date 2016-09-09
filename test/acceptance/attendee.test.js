@@ -1,11 +1,16 @@
 var expect = require('chai').expect;
-var attendee = require('../../lib/attendee_lib/attendeeLib.js')
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var attendee = endPointManager.getAttendee();
+var config = resourceManager.getConfig();
+var status = resourceManager.getStatus();
 
 describe('Attendee Acceptance Test', function(){
 	this.timeout(config.timeout);
-	var attendeeJson = {};	
+	var attendeeJson = {};
 	var arrayAttendee;
 	var firstElement = 0;
 	var minimumAttendee = 1;
@@ -16,13 +21,13 @@ describe('Attendee Acceptance Test', function(){
 			arrayAttendee = res.body;
 			done();
 		});
-	});	
+	});
 
 	it('GET /services/{serviceId}/attendees', function(done){
 		attendee.getAttendee(function(err, res){
 			if(expect(arrayAttendee.length).to.be.at.least(minimumAttendee)){
-				attendeeJson = arrayAttendee[firstElement];				
-				expect(res.body[firstElement]._id).to.equal(attendeeJson._id);				
+				attendeeJson = arrayAttendee[firstElement];
+				expect(res.body[firstElement]._id).to.equal(attendeeJson._id);
 				expect(res.body[firstElement].dn).to.equal(attendeeJson.dn);
 				expect(res.body[firstElement].cn).to.equal(attendeeJson.cn);
 				expect(res.body[firstElement].whenChanged).to.equal(attendeeJson.whenChanged);
@@ -34,11 +39,11 @@ describe('Attendee Acceptance Test', function(){
 				expect(res.body[firstElement].serviceId).to.equal(attendeeJson.serviceId);
 				expect(res.body[firstElement].__v).to.equal(attendeeJson.__v);
 			}
-			else{				
-				attendeeJson = arrayAttendee;				
-				expect(res.body).to.be.at.least(attendeeJson);				
+			else{
+				attendeeJson = arrayAttendee;
+				expect(res.body).to.be.at.least(attendeeJson);
 			}
-			expect(res.status).to.equal(status.OK);	
+			expect(res.status).to.equal(status.OK);
 			done();
 		})
 	});

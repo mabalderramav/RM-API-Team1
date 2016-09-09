@@ -1,7 +1,12 @@
 var expect = require('chai').expect;
-var room = require('../../lib/room_lib/roomLib.js');
-var config = require('../../config.json');
-var status = require('../../resources/status.json');
+/**Manager*/
+var requireManager = require('../../lib/manager_lib/requireManagerLib.js');
+var endPointManager = requireManager.getRequireEndPoinManager();
+var resourceManager = requireManager.getRequireResourceManager();
+/**Variables*/
+var room = endPointManager.getRoom();
+var config = requireManager.getRequireConfig();;
+var status = resourceManager.getStatus();
 
 describe ('Rooms Acceptance Test', function(){
 	this.timeout(config.timeout);
@@ -38,7 +43,7 @@ describe ('Rooms Acceptance Test', function(){
 	it('GET /rooms', function(done){
 		room.getRooms(function(err, res){
 			expect(res.status).to.equal(status.OK);
-			expect(roomJson.length).to.be.at.least(minimumRoom);						
+			expect(roomJson.length).to.be.at.least(minimumRoom);
 			done();
 		});
 	});
@@ -90,7 +95,7 @@ describe ('Rooms Acceptance Test', function(){
 			customDisplayName : 'update Room 002 ID TEST',
 			code : 'string'
 		};
-		room.update(roomJsonUpdate, function (err, res){      			
+		room.update(roomJsonUpdate, function (err, res){
 			expect(res.status).to.equal(status.OK);
 			var roomDefined = roomJson[roomTested];			
 			expect(res.body._id).to.equal(roomDefined._id);
@@ -108,7 +113,7 @@ describe ('Rooms Acceptance Test', function(){
 	});
 
 	it('GET /services/{serviceId}/rooms', function(done){
-		room.getRoomByServices(function(err, res){            
+		room.getRoomByServices(function(err, res){
 			expect(res.status).to.equal(status.OK);
 			expect(roomJson.length).to.be.at.least(minimumRoom);			
 			done();
@@ -116,7 +121,7 @@ describe ('Rooms Acceptance Test', function(){
 	});
 
 	it('GET /services/{serviceId}/rooms/{roomId}', function(done){
-		room.getRoomByIdAndServices(function(err, res){      
+		room.getRoomByIdAndServices(function(err, res){
 			expect(res.status).to.equal(status.OK);
 			var roomDefined = roomJson[roomTested];			
 			expect(res.body._id).to.equal(roomDefined._id);
@@ -128,7 +133,7 @@ describe ('Rooms Acceptance Test', function(){
 			expect(res.body.enabled).to.equal(roomDefined.enabled);
 			expect(res.body.locationId).to.equal(roomDefined.locationId);
 			expect(res.body.customDislplayName).to.equal(roomDefined.customDislplayName);
-			expect(res.body.code).to.equal(roomDefined.code);	
+			expect(res.body.code).to.equal(roomDefined.code);
 			done();
 		});
 	});
@@ -141,7 +146,6 @@ describe ('Rooms Acceptance Test', function(){
 			code : 'string'
 		};
 		room.updateRoomByIdAndServices(roomJsonUpdate, function(err, res){   
-
 			expect(res.status).to.equal(status.OK);
 			var roomDefined = roomJson[roomTested];			
 			expect(res.body._id).to.equal(roomDefined._id);
