@@ -12,22 +12,34 @@ describe('Rooms Smoke Test', function () {
 	this.timeout(config.timeout);
 
 	before(function(done){
-		room.getRooms(function(err, res){
-			idRoom = res.body;
-			expect(res.status).to.equal(status.OK);
+		room.getRoomByDefault(function (oneRoom){			
+			defaultRoom = oneRoom;
+			done();
+		});
+	});
+
+	after(function(done){
+		var roomJsonUpdate = {
+			enabled : true,
+			location : 'string',
+			customDisplayName : 'Room 002',
+			code : 'string'
+		};
+		room.update(defaultRoom._id, roomJsonUpdate, function(err, res){
+			expect(res.status).to.equal(status.OK);				
 			done();
 		});
 	});
 
 	it('GET /rooms', function(done){
-		room.getRooms(function(err, res){
+		room.getAllRooms(function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
 
 	it('GET /rooms/{roomId}', function(done){
-		room.getRoomById(function(err, res){
+		room.getRoom(defaultRoom._id, function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
@@ -40,21 +52,21 @@ describe('Rooms Smoke Test', function () {
 			customDisplayName : 'update Room 002 ID TEST',
 			code : 'string'
 		};
-		room.update(roomJson, function (err, res){
+		room.update(defaultRoom._id, roomJson, function (err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
 
 	it('GET /services/{serviceId}/rooms', function(done){
-		room.getRoomByServices(function(err, res){
+		room.getAllRoomsByServiceId(defaultRoom.serviceId ,function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
 	});
 
 	it('GET /services/{serviceId}/rooms/{roomId}', function(done){
-		room.getRoomByIdAndServices(function(err, res){
+		room.getRoomByServiceIdAndRoomId(defaultRoom.serviceId, defaultRoom._id, function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
@@ -67,7 +79,7 @@ describe('Rooms Smoke Test', function () {
 			customDisplayName : 'update Room 002 index test',
 			code : 'string'
 		};
-		room.updateRoomByIdAndServices(roomJson, function(err, res){
+		room.updateByServiceIdAndRoomId(defaultRoom.serviceId, defaultRoom._id, roomJson, function(err, res){
 			expect(res.status).to.equal(status.OK);
 			done();
 		});
